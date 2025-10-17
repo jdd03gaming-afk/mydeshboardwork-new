@@ -1,26 +1,32 @@
-const express = require('express');
-const path = require('path');
-const fs = require('fs');
-const cors = require('cors');
+// ===== IMPORTS =====
+const express = require("express");
+const path = require("path");
+const fs = require("fs");
+const cors = require("cors");
 
 const app = express();
 const PORT = process.env.PORT || 10000;
 
-// Middleware
+// ===== MIDDLEWARE =====
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, "public")));
 
-// ===== Login API =====
-app.post('/api/login', (req, res) => {
+// ===== LOGIN API =====
+app.post("/api/login", (req, res) => {
   const { username, password } = req.body;
   try {
-    const users = JSON.parse(fs.readFileSync(path.join(__dirname, 'public', 'users.json')));
-    const user = users.find(u => u.username === username && u.password === password);
+    const users = JSON.parse(
+      fs.readFileSync(path.join(__dirname, "public", "users.json"))
+    );
+    const user = users.find(
+      (u) => u.username === username && u.password === password
+    );
+
     if (user) {
       res.json({ success: true, user });
     } else {
-      res.status(401).json({ success: false, message: "Invalid username or password" });
+      res.status(401).json({ success: false, message: "Invalid credentials" });
     }
   } catch (err) {
     console.error(err);
@@ -28,16 +34,17 @@ app.post('/api/login', (req, res) => {
   }
 });
 
-// ===== Dashboard Data (Optional) =====
-app.get('/api/userdata', (req, res) => {
-  const users = JSON.parse(fs.readFileSync(path.join(__dirname, 'public', 'users.json')));
-  res.json(users);
+// ===== USER DATA API =====
+app.get("/api/userdata", (req, res) => {
+  try {
+    const users = JSON.parse(
+      fs.readFileSync(path.join(__dirname, "public", "users.json"))
+    );
+    res.json(users);
+  } catch (err) {
+    res.status(500).json({ message: "Failed to read user data" });
+  }
 });
 
-// ===== Serve Frontend =====
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
-
-// Start server
-app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+// ===== START SERVER =====
+app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));
