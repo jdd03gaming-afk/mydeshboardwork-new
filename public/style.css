@@ -1,83 +1,206 @@
-/* Background gradient for login page */
-body.login-bg {
-  font-family: Arial, sans-serif;
+/* ===== General Reset ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
   background: linear-gradient(135deg, #667eea, #764ba2);
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0;
 }
 
-/* Login Box */
+/* ===== Login Page ===== */
 .login-container {
-  background: white;
-  padding: 35px 45px;
-  border-radius: 10px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  background: #fff;
+  padding: 2.5rem;
+  border-radius: 15px;
+  box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.2);
   width: 350px;
   text-align: center;
 }
 
 .login-container h2 {
-  margin-bottom: 25px;
+  margin-bottom: 20px;
+  font-size: 22px;
   color: #333;
-  font-weight: bold;
 }
 
 .login-container input {
   width: 100%;
   padding: 10px;
-  margin: 8px 0 18px 0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #fff8c4;
+  margin: 8px 0;
+  border: 2px solid #eee;
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.login-container input:focus {
+  border-color: #667eea;
 }
 
 .login-container button {
   width: 100%;
-  padding: 10px;
   background-color: #667eea;
   color: white;
+  padding: 10px;
+  margin-top: 12px;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   font-size: 16px;
   cursor: pointer;
+  transition: 0.3s;
 }
 
 .login-container button:hover {
-  background-color: #5a67d8;
+  background-color: #5a6de2;
 }
 
-/* Dashboard style */
-.dashboard {
-  background: #f7f9fc;
+#error {
+  color: red;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+/* ===== Dashboard Layout ===== */
+.dashboard-container {
   display: flex;
-  font-family: Arial, sans-serif;
   height: 100vh;
+  width: 100%;
+  background-color: #f7f8fc;
 }
 
+/* ===== Sidebar ===== */
 .sidebar {
-  width: 250px;
-  background: white;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding: 15px;
-}
-
-.sidebar h3 {
-  color: #333;
-}
-
-.main-content {
-  flex: 1;
+  width: 260px;
+  background: #fff;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
   padding: 20px;
 }
 
-.stats-box {
-  background: #f0f3ff;
-  padding: 15px;
-  border-radius: 10px;
-  margin-bottom: 15px;
-  color: #4a56e2;
+.sidebar h2 {
   text-align: center;
+  color: #333;
+  margin-bottom: 25px;
+}
+
+.stat {
+  background: #f7f8fc;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.stat p {
+  color: #666;
+  font-size: 15px;
+}
+
+.stat h3 {
+  color: #667eea;
+  font-size: 26px;
+  margin-top: 5px;
+}
+
+/* ===== Main Section ===== */
+.main {
+  flex: 1;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  padding: 15px 25px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin-bottom: 25px;
+}
+
+header h2 {
+  color: #333;
+  font-weight: 600;
+}
+
+header button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 8px 15px;
+  border-radius: 8px;
+  font-size: 15px;
+  margin-left: 10px;
+  transition: 0.3s;
+}
+
+.logout {
+  background: #ff4d4d;
+  color: white;
+}
+
+.logout:hover {
+  background: #e64545;
+}
+
+.danger {
+  background: #ffa500;
+  color: white;
+}
+
+.danger:hover {
+  background: #e69500;
+}
+
+/* ===== Records Section ===== */
+.records {
+  background: #fff;
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  flex-grow: 1;
+}
+
+.records h3 {
+  margin-bottom: 15px;
+  color: #333;
+}
+
+#recordBox {
+  background: #f8f9ff;
+  border-radius: 10px;
+  padding: 20px;
+  min-height: 300px;
+  white-space: pre-wrap;
+  overflow-y: auto;
+  border: 1px solid #eee;
+  font-family: monospace;
+  font-size: 14px;
+  color: #333;
+}
+
+#copyBtn {
+  margin-top: 15px;
+  background: #667eea;
+  color: white;
+  padding: 8px 18px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#copyBtn:hover {
+  background: #5a6de2;
 }
