@@ -2,16 +2,17 @@
   {
     "username": "sumon",
     "password": "sumon123",
-    "balance": 52.40
+    "balance": 150.75,
+    "records": 3,
+    "pricePerRecord": 0.5,
+    "savedData": ["sumon data 1", "sumon data 2", "sumon data 3"]
   },
   {
     "username": "harun",
     "password": "harun123",
-    "balance": 68.20
-  },
-  {
-    "username": "yash",
-    "password": "yash789",
-    "balance": 60.40
+    "balance": 220.50,
+    "records": 5,
+    "pricePerRecord": 0.4,
+    "savedData": ["harun record 1", "harun record 2", "harun record 3", "harun record 4", "harun record 5"]
   }
 ]
