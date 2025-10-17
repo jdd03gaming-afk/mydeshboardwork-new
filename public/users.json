@@ -1,4 +1,4 @@
 [
-  { "username": "sumon", "password": "sumon123", "balance": 150, "records": ["Sumon’s record 1", "Sumon’s record 2"] },
-  { "username": "harun", "password": "harun123", "balance": 200, "records": ["Harun’s record 1", "Harun’s record 2"] }
+  { "username": "sumon", "password": "sumon123", "balance": 150, "records": ["Record A", "Record B"] },
+  { "username": "harun", "password": "harun123", "balance": 200, "records": ["Harun data 1", "Harun data 2"] }
 ]
