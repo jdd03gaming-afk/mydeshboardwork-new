@@ -1,14 +1,25 @@
 // ===== LOGIN FUNCTION =====
-async function login() {
+async function login(event) {
+  event.preventDefault(); // Prevent page reload
+
   const username = document.getElementById("username").value.trim();
   const password = document.getElementById("password").value.trim();
-  const errorBox = document.getElementById("error");
+  let errorBox = document.getElementById("error");
+
+  // create error box dynamically if not found
+  if (!errorBox) {
+    errorBox = document.createElement("div");
+    errorBox.id = "error";
+    errorBox.style.color = "red";
+    errorBox.style.marginTop = "10px";
+    document.getElementById("loginForm").appendChild(errorBox);
+  }
 
   // clear old error
-  if (errorBox) errorBox.innerText = "";
+  errorBox.innerText = "";
 
   if (!username || !password) {
-    if (errorBox) errorBox.innerText = "Please enter both username and password.";
+    errorBox.innerText = "⚠️ Please enter both username and password.";
     return;
   }
 
@@ -28,12 +39,16 @@ async function login() {
       // Redirect to dashboard page
       window.location.href = "dashboard.html";
     } else {
-      if (errorBox) errorBox.innerText = "❌ Invalid username or password.";
-      else alert("❌ Invalid username or password.");
+      errorBox.innerText = "❌ Invalid username or password.";
     }
   } catch (err) {
     console.error("Login error:", err);
-    if (errorBox) errorBox.innerText = "Server error! Please try again later.";
-    else alert("Server error! Please try again later.");
+    errorBox.innerText = "🚨 Server error! Please try again later.";
   }
 }
+
+// ===== Attach Event Listener =====
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("loginForm");
+  if (form) form.addEventListener("submit", login);
+});
