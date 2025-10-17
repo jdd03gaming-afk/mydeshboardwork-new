@@ -1,40 +1,67 @@
-// ====== Load Dashboard Data ======
-window.addEventListener("DOMContentLoaded", async () => {
+// ===== DASHBOARD PAGE =====
+
+// Dummy user data (later তুমি চাওলে এগুলো database বা Firebase এ নিতে পারো)
+const userData = {
+  sumon: {
+    username: "sumon",
+    totalRecords: 250,
+    balance: 1200,
+    pricePerRecord: 5,
+    records: [
+      "Record #1 - Login Success",
+      "Record #2 - Data Synced",
+      "Record #3 - Payment Received"
+    ]
+  },
+  harun: {
+    username: "harun",
+    totalRecords: 400,
+    balance: 3200,
+    pricePerRecord: 8,
+    records: [
+      "Record #1 - API Connected",
+      "Record #2 - New Client Added",
+      "Record #3 - Withdraw Success"
+    ]
+  }
+};
+
+// ===== PAGE LOAD =====
+document.addEventListener("DOMContentLoaded", () => {
   const user = JSON.parse(localStorage.getItem("user"));
-  const welcome = document.getElementById("welcome");
-  const totalRecords = document.getElementById("totalRecords");
-  const balance = document.getElementById("balance");
-  const recordList = document.getElementById("recordList");
 
   if (!user) {
+    alert("⚠️ Please login first!");
     window.location.href = "index.html";
     return;
   }
 
-  welcome.textContent = `Welcome, ${user.username}`;
-  balance.textContent = user.balance || 0;
+  // Show welcome
+  document.getElementById("welcomeUser").textContent = `Welcome, ${user.username}!`;
 
-  try {
-    const res = await fetch("https://mydeshboardwork-new.onrender.com/api/userdata");
-    const allUsers = await res.json();
-    const currentUser = allUsers.find(u => u.username === user.username);
-
-    if (currentUser && currentUser.records) {
-      totalRecords.textContent = currentUser.records.length;
-      recordList.innerHTML = currentUser.records
-        .map(r => `<li>${r}</li>`)
-        .join("");
-    } else {
-      totalRecords.textContent = 0;
-      recordList.innerHTML = "<li>No records found.</li>";
-    }
-  } catch (err) {
-    console.error(err);
-    recordList.innerHTML = "<li>Failed to load records.</li>";
+  // Get user data
+  const data = userData[user.username];
+  if (!data) {
+    alert("User data not found!");
+    return;
   }
+
+  // Update dashboard stats
+  document.getElementById("totalRecords").textContent = data.totalRecords;
+  document.getElementById("balance").textContent = data.balance + "৳";
+  document.getElementById("pricePerRecord").textContent = data.pricePerRecord + "৳";
+
+  // Show saved records
+  const list = document.getElementById("recordList");
+  list.innerHTML = "";
+  data.records.forEach((rec) => {
+    const li = document.createElement("li");
+    li.textContent = rec;
+    list.appendChild(li);
+  });
 });
 
-// ====== Logout Function ======
+// ===== LOGOUT FUNCTION =====
 function logout() {
   localStorage.removeItem("user");
   window.location.href = "index.html";
