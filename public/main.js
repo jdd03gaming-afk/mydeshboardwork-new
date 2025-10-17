@@ -1,12 +1,12 @@
 // ===== LOGIN FUNCTION =====
 async function login(event) {
-  event.preventDefault(); // Prevent page reload
+  event.preventDefault(); // Prevent form reload
 
-  const username = document.getElementById("username").value.trim();
+  const username = document.getElementById("username").value.trim().toLowerCase();
   const password = document.getElementById("password").value.trim();
   let errorBox = document.getElementById("error");
 
-  // create error box dynamically if not found
+  // Create error box dynamically if not found
   if (!errorBox) {
     errorBox = document.createElement("div");
     errorBox.id = "error";
@@ -15,7 +15,7 @@ async function login(event) {
     document.getElementById("loginForm").appendChild(errorBox);
   }
 
-  // clear old error
+  // Clear previous errors
   errorBox.innerText = "";
 
   if (!username || !password) {
@@ -23,27 +23,37 @@ async function login(event) {
     return;
   }
 
-  try {
-    const response = await fetch("https://mydeshboardwork-new.onrender.com/api/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, password }),
-    });
-
-    const data = await response.json();
-
-    if (data.success) {
-      // Save logged in user data to local storage
-      localStorage.setItem("user", JSON.stringify(data.user));
-
-      // Redirect to dashboard page
-      window.location.href = "dashboard.html";
-    } else {
-      errorBox.innerText = "❌ Invalid username or password.";
+  // === Static user data (can be replaced with your API later) ===
+  const users = [
+    {
+      username: "harun",
+      password: "harun123",
+      records: 12,
+      balance: 48.5,
+      pricePerRecord: 0.4,
+      savedData: ["Harun Data 1", "Harun Data 2", "Harun Record 3"]
+    },
+    {
+      username: "sumon",
+      password: "sumon123",
+      records: 7,
+      balance: 28.0,
+      pricePerRecord: 0.4,
+      savedData: ["Sumon Record 1", "Sumon Record 2"]
     }
-  } catch (err) {
-    console.error("Login error:", err);
-    errorBox.innerText = "🚨 Server error! Please try again later.";
+  ];
+
+  // === Find user ===
+  const user = users.find(u => u.username === username && u.password === password);
+
+  if (user) {
+    // Save to localStorage
+    localStorage.setItem("user", JSON.stringify(user));
+
+    // Redirect to dashboard
+    window.location.href = "dashboard.html";
+  } else {
+    errorBox.innerText = "❌ Invalid username or password.";
   }
 }
 
