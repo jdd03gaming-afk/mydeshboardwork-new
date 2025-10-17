@@ -3,17 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login</title>
+  <title>Admin Login</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
+<body class="login-bg">
   <div class="login-container">
-    <h2>Login</h2>
-    <input type="text" id="username" placeholder="Username" />
-    <input type="password" id="password" placeholder="Password" />
-    <button onclick="login()">Login</button>
-    <p id="error"></p>
+    <h2>Admin Login</h2>
+    <form id="loginForm">
+      <label>Username:</label>
+      <input type="text" id="username" required />
+
+      <label>Password:</label>
+      <input type="password" id="password" required />
+
+      <button type="submit">Login</button>
+    </form>
   </div>
+
   <script src="main.js"></script>
 </body>
 </html>
