@@ -1,25 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="dashboard-container">
-    <h1>Welcome to your Dashboard</h1>
-    <p id="userinfo"></p>
-    <button onclick="logout()">Logout</button>
+    <aside class="sidebar">
+      <h2>Dashboard Stats</h2>
+      <div class="stat">
+        <p>Total Records</p>
+        <h3 id="totalRecords">0</h3>
+      </div>
+      <div class="stat">
+        <p>Current Balance</p>
+        <h3 id="balance">0</h3>
+      </div>
+      <div class="stat">
+        <p>Price Per Record</p>
+        <h3 id="pricePerRecord">0.40</h3>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header>
+        <h2 id="welcome"></h2>
+        <div>
+          <button id="deleteBtn" class="danger">Delete All Data</button>
+          <button id="logoutBtn" class="logout">Logout</button>
+        </div>
+      </header>
+
+      <section class="records">
+        <h3>Your Saved Records</h3>
+        <pre id="recordBox"></pre>
+        <button id="copyBtn">Copy All</button>
+      </section>
+    </main>
   </div>
+
   <script>
+    // Load user data
     const user = JSON.parse(localStorage.getItem('user'));
-    if (!user) window.location.href = '/';
-    document.getElementById('userinfo').innerText = `Username: ${user.username} | Balance: ${user.balance}`;
-    function logout() {
-      localStorage.removeItem('user');
+    if (!user) {
       window.location.href = '/';
     }
+
+    document.getElementById('welcome').innerText = `Welcome, ${user.username}`;
+    document.getElementById('balance').innerText = user.balance.toFixed(2);
+
+    const pricePerRecord = 0.40;
+    document.getElementById('pricePerRecord').innerText = pricePerRecord;
+
+    // Generate some dummy records (simulate personal data)
+    const records = [
+      `User: ${user.username}`,
+      `Balance: ${user.balance}`,
+      `Status: Active`,
+      `Last login: ${new Date().toLocaleString()}`
+    ];
+
+    document.getElementById('recordBox').innerText = records.join("\n");
+    document.getElementById('totalRecords').innerText = records.length;
+
+    document.getElementById('logoutBtn').addEventListener('click', () => {
+      localStorage.removeItem('user');
+      window.location.href = '/';
+    });
+
+    document.getElementById('deleteBtn').addEventListener('click', () => {
+      document.getElementById('recordBox').innerText = '';
+      document.getElementById('totalRecords').innerText = '0';
+      alert('All records deleted');
+    });
+
+    document.getElementById('copyBtn').addEventListener('click', () => {
+      navigator.clipboard.writeText(document.getElementById('recordBox').innerText);
+      alert('Copied to clipboard!');
+    });
   </script>
 </body>
 </html>
