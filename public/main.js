@@ -1,11 +1,14 @@
-// ====== Login Function ======
+// ===== LOGIN FUNCTION =====
 async function login() {
   const username = document.getElementById("username").value.trim();
   const password = document.getElementById("password").value.trim();
-  const error = document.getElementById("error");
+  const errorBox = document.getElementById("error");
+
+  // clear old error
+  if (errorBox) errorBox.innerText = "";
 
   if (!username || !password) {
-    error.innerText = "Please enter both username and password.";
+    if (errorBox) errorBox.innerText = "Please enter both username and password.";
     return;
   }
 
@@ -13,28 +16,24 @@ async function login() {
     const response = await fetch("https://mydeshboardwork-new.onrender.com/api/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, password })
+      body: JSON.stringify({ username, password }),
     });
 
     const data = await response.json();
 
     if (data.success) {
-      // Save user info in local storage
+      // Save logged in user data to local storage
       localStorage.setItem("user", JSON.stringify(data.user));
-      window.location.href = "dashboard.html"; // Redirect to dashboard
+
+      // Redirect to dashboard page
+      window.location.href = "dashboard.html";
     } else {
-      error.innerText = data.message || "Invalid username or password.";
+      if (errorBox) errorBox.innerText = "❌ Invalid username or password.";
+      else alert("❌ Invalid username or password.");
     }
   } catch (err) {
-    console.error(err);
-    error.innerText = "Server error. Please try again later.";
+    console.error("Login error:", err);
+    if (errorBox) errorBox.innerText = "Server error! Please try again later.";
+    else alert("Server error! Please try again later.");
   }
 }
-
-// ====== Auto Redirect if Already Logged In ======
-window.addEventListener("DOMContentLoaded", () => {
-  const user = localStorage.getItem("user");
-  if (user && window.location.pathname.includes("index.html")) {
-    window.location.href = "dashboard.html";
-  }
-});
