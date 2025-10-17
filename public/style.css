@@ -1,206 +1,179 @@
-/* ===== General Reset ===== */
-* {
+/* ======== General ======== */
+body {
+  font-family: "Poppins", sans-serif;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-}
-
-body {
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* ===== Login Page ===== */
-.login-container {
-  background: #fff;
-  padding: 2.5rem;
-  border-radius: 15px;
-  box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.2);
-  width: 350px;
-  text-align: center;
-}
-
-.login-container h2 {
-  margin-bottom: 20px;
-  font-size: 22px;
+  background: linear-gradient(135deg, #e9f0ff, #f9fcff);
   color: #333;
 }
 
-.login-container input {
+/* ======== Login Page ======== */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login-box {
+  background: #fff;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  text-align: center;
+  width: 320px;
+}
+
+.login-box h2 {
+  margin-bottom: 20px;
+  color: #4a56e2;
+  font-size: 24px;
+}
+
+.login-box input {
   width: 100%;
-  padding: 10px;
-  margin: 8px 0;
-  border: 2px solid #eee;
+  padding: 12px;
+  margin: 10px 0;
+  border: 2px solid #dde3ff;
   border-radius: 8px;
   font-size: 15px;
   outline: none;
   transition: 0.3s;
 }
 
-.login-container input:focus {
-  border-color: #667eea;
+.login-box input:focus {
+  border-color: #4a56e2;
+  box-shadow: 0 0 5px rgba(74, 86, 226, 0.2);
 }
 
-.login-container button {
-  width: 100%;
-  background-color: #667eea;
+.login-box button {
+  background: #4a56e2;
   color: white;
-  padding: 10px;
-  margin-top: 12px;
   border: none;
+  width: 100%;
+  padding: 12px;
   border-radius: 8px;
   font-size: 16px;
+  font-weight: bold;
   cursor: pointer;
   transition: 0.3s;
 }
 
-.login-container button:hover {
-  background-color: #5a6de2;
+.login-box button:hover {
+  background: #3743c5;
 }
 
 #error {
   color: red;
   margin-top: 10px;
-  font-size: 14px;
 }
 
-/* ===== Dashboard Layout ===== */
-.dashboard-container {
+/* ======== Dashboard Page ======== */
+.dashboard-body {
   display: flex;
-  height: 100vh;
-  width: 100%;
-  background-color: #f7f8fc;
+  background: #f5f7fb;
+  min-height: 100vh;
 }
 
-/* ===== Sidebar ===== */
+/* Sidebar */
 .sidebar {
   width: 260px;
-  background: #fff;
-  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
-  padding: 20px;
+  background: #ffffff;
+  padding: 25px;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
 }
 
-.sidebar h2 {
-  text-align: center;
+.sidebar h3 {
   color: #333;
   margin-bottom: 25px;
+  font-size: 20px;
+  border-bottom: 2px solid #4a56e2;
+  padding-bottom: 8px;
 }
 
 .stat {
-  background: #f7f8fc;
-  padding: 20px;
-  border-radius: 10px;
+  background: #eef0ff;
+  border-left: 5px solid #4a56e2;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 18px;
   text-align: center;
-  margin-bottom: 15px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-.stat p {
+.stat .value {
+  font-size: 28px;
+  color: #4a56e2;
+  font-weight: bold;
+}
+
+.stat div {
+  font-size: 14px;
   color: #666;
-  font-size: 15px;
 }
 
-.stat h3 {
-  color: #667eea;
-  font-size: 26px;
-  margin-top: 5px;
-}
-
-/* ===== Main Section ===== */
+/* Main Section */
 .main {
   flex: 1;
-  padding: 30px;
-  display: flex;
-  flex-direction: column;
+  padding: 40px;
 }
 
-header {
+.topbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #fff;
-  padding: 15px 25px;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  margin-bottom: 25px;
+  margin-bottom: 30px;
 }
 
-header h2 {
-  color: #333;
-  font-weight: 600;
+.topbar h2 {
+  color: #222;
+  font-size: 24px;
 }
 
-header button {
+.topbar button {
+  background: #ff4b4b;
+  color: white;
   border: none;
-  outline: none;
+  padding: 10px 18px;
+  border-radius: 6px;
   cursor: pointer;
-  padding: 8px 15px;
-  border-radius: 8px;
-  font-size: 15px;
-  margin-left: 10px;
+  font-weight: bold;
   transition: 0.3s;
 }
 
-.logout {
-  background: #ff4d4d;
-  color: white;
+.topbar button:hover {
+  background: #d63333;
 }
 
-.logout:hover {
-  background: #e64545;
-}
-
-.danger {
-  background: #ffa500;
-  color: white;
-}
-
-.danger:hover {
-  background: #e69500;
-}
-
-/* ===== Records Section ===== */
+/* Records Section */
 .records {
-  background: #fff;
-  border-radius: 10px;
+  background: #ffffff;
+  border-radius: 12px;
   padding: 25px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  flex-grow: 1;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
 }
 
 .records h3 {
+  margin-top: 0;
+  color: #333;
+  font-size: 20px;
   margin-bottom: 15px;
-  color: #333;
 }
 
-#recordBox {
-  background: #f8f9ff;
-  border-radius: 10px;
-  padding: 20px;
-  min-height: 300px;
-  white-space: pre-wrap;
-  overflow-y: auto;
-  border: 1px solid #eee;
-  font-family: monospace;
-  font-size: 14px;
-  color: #333;
+ul {
+  list-style: none;
+  padding: 0;
 }
 
-#copyBtn {
-  margin-top: 15px;
-  background: #667eea;
-  color: white;
-  padding: 8px 18px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
+li {
+  background: #eef0ff;
+  color: #333;
+  margin: 8px 0;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 15px;
   transition: 0.3s;
 }
 
-#copyBtn:hover {
-  background: #5a6de2;
+li:hover {
+  background: #dbe0ff;
 }
