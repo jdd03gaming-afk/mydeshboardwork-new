@@ -1,24 +1,83 @@
-body {
+/* Background gradient for login page */
+body.login-bg {
   font-family: Arial, sans-serif;
-  background: #f4f4f9;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0;
+}
+
+/* Login Box */
+.login-container {
+  background: white;
+  padding: 35px 45px;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  width: 350px;
+  text-align: center;
+}
+
+.login-container h2 {
+  margin-bottom: 25px;
+  color: #333;
+  font-weight: bold;
+}
+
+.login-container input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0 18px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff8c4;
+}
+
+.login-container button {
+  width: 100%;
+  padding: 10px;
+  background-color: #667eea;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.login-container button:hover {
+  background-color: #5a67d8;
+}
+
+/* Dashboard style */
+.dashboard {
+  background: #f7f9fc;
+  display: flex;
+  font-family: Arial, sans-serif;
   height: 100vh;
 }
-.login-container, .dashboard-container {
+
+.sidebar {
+  width: 250px;
   background: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+}
+
+.sidebar h3 {
+  color: #333;
+}
+
+.main-content {
+  flex: 1;
   padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
-input {
-  display: block;
-  margin: 10px 0;
-  padding: 10px;
-  width: 100%;
-}
-button {
-  padding: 10px 15px;
-  cursor: pointer;
+
+.stats-box {
+  background: #f0f3ff;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  color: #4a56e2;
+  text-align: center;
 }
