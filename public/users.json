@@ -2,13 +2,16 @@
   {
     "username": "sumon",
     "password": "sumon123",
-    "balance": 150,
-    "records": ["Sumon data 1", "Sumon data 2", "Sumon data 3"]
+    "balance": 52.40
   },
   {
     "username": "harun",
     "password": "harun123",
-    "balance": 200,
-    "records": ["Harun record 1", "Harun record 2"]
+    "balance": 68.20
+  },
+  {
+    "username": "yash",
+    "password": "yash789",
+    "balance": 60.40
   }
 ]
